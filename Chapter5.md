@@ -116,6 +116,7 @@ Date 类型的valueOf()方法，则根本不返回字符串，而是返回日期
 	* var sum = function(){} 
 	* var sum=new Function("num1", num2", "return num1 + num2")。
 	Function 构造函数可以接收任意数量的参数，但最后一个参数始终都被看成是函数体
+	
 一定理解函数是对象函数名是指针的概念
 使用不带圆括号的函数名是访问函数指针，而非调用函数。
 
@@ -187,7 +188,8 @@ bind()：这个方法会创建一个函数的实例，其this 值会被绑定到
 > 6 基本包装类型
 
 为了便于操作基本类型，定义了3种特殊的引用类型：Boolean Number String
-引用类型与基本包装类型的主要区别就是对象的生存期。使用new 操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。这意味着我们不能在运行时为基本类型值添加属性和方法。对基本包装类型的实例调用typeof 会返回"object"，
+引用类型与基本包装类型的主要区别就是对象的生存期。使用new 操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。这意味着我们不能在运行时为基本类型值添加属性和方法。对基本包装类型的实例调用typeof 会返回"object"
+
 1. boolean使用instanceof操作符测试Boolean 对象会返回true，而测试基本类型的布尔值则返回false
 2. Number 
 toFixed()方法会按照指定的小数位返回数值的字符串表示
@@ -197,9 +199,7 @@ toExponential()，该方法返回以指数表示法（也称e 表示法）表示
 访问字符串中特定字符的方法是：charAt()和charCodeAt()
 
 concat() slice()、substr()和substring(); indexOf()  lastIndexOf() ；trim()
-
 toLowerCase()、toLocaleLowerCase()、toUpperCase()和toLocaleUpperCase()
-
 * match()（同上exec方法只不过一个是正则定义的一个是String定义的）
 * search()方法返回字符串中第一个匹配项的索引
 * replace（//,要被替换的值）的模式组匹配
@@ -214,24 +214,28 @@ fromCharCode()是接收一或多个字符编码，然后将它们转换成一个
 > 7  单体内置对象（不依赖于宿主环境的对象，这些对象在ECMAScript 程序执行之前就已经存在了）
 
 1. global对象（在js中体现的是window对象）
-	* URI编码方法
+* URI编码方法
 URI，是uniform resource identifier，统一资源标识符，用来唯一的标识一个资源。而URL是uniform resource locator，统一资源定位器，它是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源。而URN，uniform resource name，统一资源命名，是通过名字来标识资源，比如mailto:java-net@java.sun.com。也就是说，URI是以一种抽象的，高层次概念定义统一资源标识，而URL和URN则是具体的资源标识的方式。URL和URN都是一种URI。
 URL是一种具体的URI，它不仅唯一标识资源，而且还提供了定位该资源的信息。URI是一种语义上的抽象概念，可以是绝对的，也可以是相对的，而URL则必须提供足够的信息来定位，所以，是绝对的，而通常说的relative URL，则是针对另一个absolute URL，本质上还是绝对的。
 encodeURI()编码后的结果是除了空格之外的其他字符都原封不动，只有空格被替换成了%20 encodeURIComponent()方法则会使用对应的编码替换所有非字母数字字符
 decodeURI()和decodeURIComponent()是两个对应的逆方法
-	* eval()可以用来保留字符换换行操作并不是eval的作用而是alert的作用,alert以及console.log都会识别换行符
+* eval()
+可以用来保留字符换换行操作并不是eval的作用而是alert的作用,alert以及console.log都会识别换行符
 var msg = "hello world \r\n hello tom";
         eval("alert(msg)");  //会换行
 		alert(msg);  //会换行
         cons(msg);  //会换行	
-	* global对象属性
-	* window对象
+* global对象属性
+* window对象
+
 2. math对象
+
 	* 对象的属性定义的一些常量eg pi
 	* min()   max()
 	* ceil()  floor()  round()
 	* abs()  log()  exp()等其他方法
 3. 疑问总结:
+
 * indexOf接收两个参数是什么意思
  var a = [1,2,3,4,5,6,4,5,6,4,7];
  console.log(a.indexOf(4,4)); //6
