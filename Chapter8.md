@@ -87,12 +87,7 @@ bom提供了很多对象，用于访问浏览器的功能，W3C 为了把浏览�
 * registerContentHandler(MIME类型，可处理该MIME类型的页面的URL，应用程序的名称)三个，第一个参数是RSS 源的MIME 类型。
 * registerProtocolHandler()方法，它也接收三个参数：要处理的协议（例如，mailto 或ftp）、处理该协议的页面的URL 和应用程序的名称
 * 是一种RSS基于XML标准，在互联网上被广泛采用的内容包装和投递协议。RSS(Really Simple Syndication)是一种描述和同步网站内容的格式，是使用最广泛的XML应用。
-
-
 #### screen
-
-
-
 #### history
 该对象保存着上网的历史记录，
 
