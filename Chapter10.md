@@ -9,10 +9,12 @@
 
 1. DOM1级定义了一个node接口
 * nodeName 和nodeValue属性，在使用这两个值以前，最好先检测一下节点的类型（利用if(someNode.nodeType==1){使用}）
-* 节点关系 子父同胞 childNodes属性（内部所有节点都是同胞节点，他们的parentNode都都指向同一个节点）保存着一个NodeList是一种类数组对象，用于保存一组有序的节点可以通过位置来访问这些节点
-  1.对arguments 对象使用Array.prototype.slice()方法可以将其转换为数组，也可以将NodeList 对象转换为数组具体方法分为： 
-  2. 方法var arrayOfNodes = Array.prototype.slice.call(someNode.childNodes,0);
-  3. E8及更早的版本将NodeList实现为一个COM对象，将其转化为数组必须手动枚举所有成员，可以使用怪癖检测方式
+
+2. 节点关系 子父同胞 childNodes属性（内部所有节点都是同胞节点，他们的parentNode都都指向同一个节点）保存着一个NodeList是一种类数组对象，用于保存一组有序的节点可以通过位置来访问这些节点
+
+* 对arguments 对象使用Array.prototype.slice()方法可以将其转换为数组，也可以将NodeList 对象转换为数组具体方法分为： 
+* 方法var arrayOfNodes = Array.prototype.slice.call(someNode.childNodes,0);
+* E8及更早的版本将NodeList实现为一个COM对象，将其转化为数组必须手动枚举所有成员，可以使用怪癖检测方式
       function convertToArray(nodes){
           var array = null;
           try {
@@ -24,27 +26,31 @@
               }
           }
           return array;
-       }
-  4. parentNode 该属性指向文档树中的父节点，包含在childNodes列表中的每个节点相互之间都是同胞节点可以使用previousSibling和nextSibling第一个和最后一个分别为null
-  5. firstChild 和lastChild
+       }
+* parentNode 该属性指向文档树中的父节点，包含在childNodes列表中的每个节点相互之间都是同胞节点可以使用previousSibling和nextSibling第一个和最后一个分别为null
+* firstChild 和lastChild
   
-* 操作节点
- 1. appendChild()，用于向childNodes 列表的末尾添加一个节点 
- 2. insertBefore()方法，接受两个参数：要插入的节点和作为参照的节点
- 3. replaceChild()方法接受的两个参数是：要插入的节点和要替换的节点
-* 其他方法
- 1. cloneNode()，用于创建调用这个方法的节点的一个完全相同的副本 cloneNode()方法接受一个布尔值参数，表示是否执行深复制 在参数为true的情况下，执行深复制，也就是复制节点及其整个子节点树，（不会复制时间处理程序，但是在IE中存在bug，会复制事件处理程序，故在复制之前需要先移除事件处理程序）
+2. 操作节点
+* appendChild()，用于向childNodes 列表的末尾添加一个节点 
+* insertBefore()方法，接受两个参数：要插入的节点和作为参照的节点
+* replaceChild()方法接受的两个参数是：要插入的节点和要替换的节点
+
+3. 其他方法
+* cloneNode()，用于创建调用这个方法的节点的一个完全相同的副本 cloneNode()方法接受一个布尔值参数，表示是否执行深复制 在参数为true的情况下，执行深复制，也就是复制节点及其整个子节点树，（不会复制时间处理程序，但是在IE中存在bug，会复制事件处理程序，故在复制之前需要先移除事件处理程序）
  
 > document类型
 
 1. 文档子节点Document节点的子节点可以是DocumentType、Element、ProcessingInstruction或Comment (document.doctype)
- * 一般一个页面文档中只包含一个子节点，即<html>元素（注释时一定注意）。可以通过documentElement 或childNodes 列表来访问这个元素
- * document.body属性直接执行<body>元素
+
+* 一般一个页面文档中只包含一个子节点，即<html>元素（注释时一定注意）。可以通过documentElement 或childNodes 列表来访问这个元素
+* document.body属性直接执行<body>元素
+  
 2. 文档信息 如document.title document.URL（地址栏中显示的URL） document.domain(页面的域名,可设置，值相同时可访问) document.referrer(链接到当前页面的那个页面的URL)
 3. 查找元素 
-  * document.getElementById()注意第一个方法在IE中若存在（<input><textarea><button><select>的name属性和id值相同，并且位于指定id元素的前面将会被返回）
-  * document.getElementsByTagName()会返回一个HTMLCollection 对象 该对象除了索引外还提供按名称访问，可以通过name取得集合中的项namedItem()；getElementsByTagName()传入*正常包含整个页面的元素，但在IE中将commemt视为element，注释节点也会被返回
-  * getElementsByName()最常使用getElementsByName()方法的情况是取得单选按钮，返回一个HTMLCollectioin。但是，对于这里的单选按钮来说，namedItem()方法则只会取得第一项（因为每一项的name 特性都相同
+
+* document.getElementById()注意第一个方法在IE中若存在（<input><textarea><button><select>的name属性和id值相同，并且位于指定id元素的前面将会被返回）
+* document.getElementsByTagName()会返回一个HTMLCollection 对象 该对象除了索引外还提供按名称访问，可以通过name取得集合中的项namedItem()；getElementsByTagName()传入*正常包含整个页面的元素，但在IE中将commemt视为element，注释节点也会被返回
+* getElementsByName()最常使用getElementsByName()方法的情况是取得单选按钮，返回一个HTMLCollectioin。但是，对于这里的单选按钮来说，namedItem()方法则只会取得第一项（因为每一项的name 特性都相同
 
 4. 特殊集合 除了属性和方法，document 对象还有一些特殊的集合，这些集合都是HTMLCollection 对象
 * document.anchors 包含文档中所有带name 特性的<a>元素
@@ -91,7 +97,54 @@ Element 类型用于表现XML或HTML元素，提供了对元素标签名、子�
 3. 规范化文本节点,这个方法是由Node 类型定义的（因而在所有节点类型中都存在），名叫normalize();element.normalize();
 4. 分割文本节点提供了一个作用与normalize()相反的方法：splitText()
  
-> comment类型 
+> comment类型 注释
+
+1. document.createComment()并为其传递注释文本也可以创建注释节点
+
+> CDATASection类型
+
+1. CDATASection 类型只针对基于XML 的文档，表示的是CDATA 区域
+
+> DocumentType类型
+
+1. 包含着与文档的doctype 有关的所有信息
+
+> DocumentFragment类型
+
+1. 在所有节点类型中，只有DocumentFragment 在文档中没有对应的标记。DOM 规定文档片段（document fragment）是一种“轻量级”的文档，可以包含和控制节点，但不会像完整的文档那样占用额外的资源
+
+> Attr类型
+
+1. 元素的特性在DOM 中以Attr 类型来表示，从技术角度讲，特性就是存在于元素的attributes 属性中的节点
+2. Attr 对象有3 个属性：name、value 和specified。
+
+### DOM操作技术
+
+> 动态脚本
+
+1. 跟操作HTML 元素一样，创建动态脚本也有两种方式：插入外部文件和直接插入JavaScript 代码。
+
+> 动态样式
+
+1. 能够把CSS 样式包含到HTML 页面中的元素有两个。其中，<link>元素用于包含来自外部的文件，而<style>元素用于指定嵌入的样式，加载外部样式文件的过程是异步的，也就是加载样式与执行JavaScript代码的过程没有固定的次序。
+
+> 操作表格
+
+> 使用NodeList
+
+1. 理解NodeList 及其“近亲”NamedNodeMap 和HTMLCollection，是从整体上透彻理解DOM的关键所在。这三个集合都是“动态的”；换句话说，每当文档结构发生变化时，它们都会得到更新。
+
+###注意
+
+1.理解DOM的关键，就是理解DOM 对性能的影响。DOM操作往往是JavaScript 程序中开销最大的部分，而因访问NodeList 导致的问题为最多。NodeList 对象都是“动态的”，这就意味着每次访问NodeList 对象，都会运行一次查询。有鉴于此，最好的办法就是尽量减少DOM操作。
+
+
+
+
+
+
+
+
 
 
 
