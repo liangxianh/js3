@@ -30,12 +30,12 @@
 * parentNode 该属性指向文档树中的父节点，包含在childNodes列表中的每个节点相互之间都是同胞节点可以使用previousSibling和nextSibling第一个和最后一个分别为null
 * firstChild 和lastChild
   
-2. 操作节点
+3. 操作节点
 * appendChild()，用于向childNodes 列表的末尾添加一个节点 
 * insertBefore()方法，接受两个参数：要插入的节点和作为参照的节点
 * replaceChild()方法接受的两个参数是：要插入的节点和要替换的节点
 
-3. 其他方法
+4. 其他方法
 * cloneNode()，用于创建调用这个方法的节点的一个完全相同的副本 cloneNode()方法接受一个布尔值参数，表示是否执行深复制 在参数为true的情况下，执行深复制，也就是复制节点及其整个子节点树，（不会复制时间处理程序，但是在IE中存在bug，会复制事件处理程序，故在复制之前需要先移除事件处理程序）
  
 > document类型
@@ -46,11 +46,12 @@
 * document.body属性直接执行<body>元素
   
 2. 文档信息 如document.title document.URL（地址栏中显示的URL） document.domain(页面的域名,可设置，值相同时可访问) document.referrer(链接到当前页面的那个页面的URL)
-3. 查找元素 
 
+3. 查找元素 
 * document.getElementById()注意第一个方法在IE中若存在（<input><textarea><button><select>的name属性和id值相同，并且位于指定id元素的前面将会被返回）
 * document.getElementsByTagName()会返回一个HTMLCollection 对象 该对象除了索引外还提供按名称访问，可以通过name取得集合中的项namedItem()；getElementsByTagName()传入*正常包含整个页面的元素，但在IE中将commemt视为element，注释节点也会被返回
 * getElementsByName()最常使用getElementsByName()方法的情况是取得单选按钮，返回一个HTMLCollectioin。但是，对于这里的单选按钮来说，namedItem()方法则只会取得第一项（因为每一项的name 特性都相同
+
 
 4. 特殊集合 除了属性和方法，document 对象还有一些特殊的集合，这些集合都是HTMLCollection 对象
 * document.anchors 包含文档中所有带name 特性的<a>元素
