@@ -48,22 +48,25 @@
 2. 文档信息 如document.title document.URL（地址栏中显示的URL） document.domain(页面的域名,可设置，值相同时可访问) document.referrer(链接到当前页面的那个页面的URL)
 
 3. 查找元素 
-* document.getElementById()注意第一个方法在IE中若存在（<input><textarea><button><select>的name属性和id值相同，并且位于指定id元素的前面将会被返回）
-* document.getElementsByTagName()会返回一个HTMLCollection 对象 该对象除了索引外还提供按名称访问，可以通过name取得集合中的项namedItem()；getElementsByTagName()传入*正常包含整个页面的元素，但在IE中将commemt视为element，注释节点也会被返回
-* getElementsByName()最常使用getElementsByName()方法的情况是取得单选按钮，返回一个HTMLCollectioin。但是，对于这里的单选按钮来说，namedItem()方法则只会取得第一项（因为每一项的name 特性都相同
+* document.getElementById()注意在IE中若存在（<input><textarea><button><select>的name属性和id值相同并且位于指定id元素的前面将会被返回）；
+* document.getElementsByTagName()会返回一个HTMLCollection 对象该对象除了索引外还提供按名称访问，可以通过name取得集合中的项namedItem()；getElementsByTagName()传入\*正常包含整个页面的元素，但在IE中将commemt视为element，注释节点也会被返回；
+* getElementsByName()最常使用的情况是取得单选按钮返回一个HTMLCollectioin；但对于这里的单选按钮来说namedItem()方法则只会取得第一项（因为每一项的name 特性都相同）；
+<BR />
+4. 特殊集合，除了属性和方法，document 对象还有一些特殊的集合，这些集合都是HTMLCollection 对象
 
-
-4. 特殊集合 除了属性和方法，document 对象还有一些特殊的集合，这些集合都是HTMLCollection 对象
 * document.anchors 包含文档中所有带name 特性的<a>元素
 * document.forms 包含文档中所有的<form>元素
 * document.images，包含文档中所有的<img>元素
 * document.links，包含文档中所有带href 特性的<a>元素
 
 5. DOM一致性检测
+
 由于DOM 分为多个级别，也包含多个部分，因此检测浏览器实现了DOM的哪些部分就十分必要，document.implementation 属性就是为此提供相应信息和功能的对象
+
 * DOM1 级只为document.implementation 规定了一个方法，即hasFeature()接受两个参数：要检测的DOM功能的名称及版本号，返回true、false eg var hasXmlDom = document.implementation.hasFeature("XML", "1.0");
 
 6. 文档写入
+
 * write()接收一个字符串参数，文档加载结束后调用document.write()方法会重写整个页面（不管页面之前有什么内容将被替换）
 * writeln()同上，带换行
 * open()
