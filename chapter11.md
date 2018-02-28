@@ -55,7 +55,11 @@
 
 > 专有扩展 
 
-
+1. 文档模式
+2. children属性
+3. contains（）方法
+4. 插入文本  innerText属性和outerText属性
+5. 滚动
 
 
 
