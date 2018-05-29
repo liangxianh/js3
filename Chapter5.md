@@ -43,12 +43,15 @@ splice（start，num，*n个插入项）
  arr.every(function(item,index,arr){ })
 //对应的元素，对应的下标，操作的数组，相当于所有元素在函数内部操作的结果相与的值，some相当于或的值
 每个方法都没有改变原来数组的值那类似于forEach有什么应用呢
+
 // 迭代方法
+
        var everyRst = a.every(function(item,index){
        		if(item>1){  //若此处为>=1，则下面返回true
        			return true;
        		}
        })
+       
        cons(everyRst); //false
        var someRst = a.some(function(item,index,arr){
        		if(item>6){  //若此处为>=1，则下面返回true
@@ -57,6 +60,7 @@ splice（start，num，*n个插入项）
        		// cons(index);
        		// cons(arr); //对应的传入的数组
        })
+       
        var cc = [];
        a.forEach(function(item,index,arr){
        		item = item +2;
@@ -66,6 +70,7 @@ splice（start，num，*n个插入项）
        		return item = item +2; //返回值必须自己设置么？return
        		// 当为 item = item +2; 打印的所有的dd都是undefined
        })
+       
        cons(a); //(11) [1, 2, 3, 4, 5, 6, 4, 5, 6, 4, 7]
        cons(cc);//(11) [3, 4, 5, 6, 7, 8, 6, 7, 8, 6, 9]
        cons(dd);//(11) [3, 4, 5, 6, 7, 8, 6, 7, 8, 6, 9]
